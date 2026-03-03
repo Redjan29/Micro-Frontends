@@ -1,39 +1,53 @@
 # CP5 — Le Catalogue
 
-Télécharge le zip **checkpoint5** depuis Teams.
+## Objectif
+
+Créer le micro-frontend `mfe-catalog` et l’intégrer dans le `shell` avec Module Federation.
+
+## Démarrage rapide
+
+Lancer les 4 applications dans 4 terminaux séparés :
 
 ```bash
-T1 : cd mfe-catalog && npm install && npm start  # 3003
-T2 : cd mfe-header  && npm install && npm start  # 3001
-T3 : cd mfe-lobby   && npm install && npm start  # 3002
-T4 : cd shell       && npm install && npm start  # 3000
-```
+# T1 (3003)
+cd mfe-catalog
+npm install
+npm start
 
----
+# T2 (3001)
+cd mfe-header
+npm install
+npm start
+
+# T3 (3002)
+cd mfe-lobby
+npm install
+npm start
+
+# T4 (3000)
+cd shell
+npm install
+npm start
+```
 
 ## Mission
 
-Créer `mfe-catalog` de A à Z et le brancher sur le Shell.
+1. `mfe-catalog/webpack.config.js`
+	- Configurer Module Federation (`name`, `filename`, `exposes`, `shared`)
+2. `mfe-catalog/src/components/Catalog.jsx`
+	- Émettre l’événement `cart:add` via `eventBus` lors d’un ajout au panier
+3. `shell/webpack.config.js`
+	- Déclarer `mfe-catalog` en remote (`http://localhost:3003/remoteEntry.js`)
+4. `shell/src/App.jsx`
+	- Importer et afficher `Catalog`
 
-**`mfe-catalog/webpack.config.js`**
-→ 4 TODOs : configurer Module Federation (name, filename, exposes, shared)
+## Critères de validation
 
-**`mfe-catalog/src/components/Catalog.jsx`**
-→ Notifier l'eventBus quand l'utilisateur ajoute un produit
+- `http://localhost:3000` affiche 6 produits dans la boutique
+- Au clic sur “Ajouter”, la console affiche :
+  - `[EventBus] cart:add { id, name, price }`
 
-**`shell/webpack.config.js`**
-→ Déclarer `mfe-catalog` comme remote (port 3003)
+## Livraison
 
-**`shell/src/App.jsx`**
-→ Importer et afficher le Catalog
-
----
-
-## Validation
-
-- `localhost:3000` → 6 produits s'affichent dans la Boutique
-- Console : `[EventBus] cart:add { id, name, price }` au clic sur "Ajouter"
-
----
-
-📤 Push ta branche
+- Commit sur la branche du checkpoint
+- Push sur le remote
