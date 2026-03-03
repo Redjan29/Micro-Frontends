@@ -7,18 +7,9 @@ function Navbar() {
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
-    const unsubscribeGameJoined = eventBus.on('game:joined', () => {
-      setNotifications(prev => prev + 1);
-    });
-
-    const unsubscribeCartUpdated = eventBus.on('cart:updated', (payload) => {
-      setCartCount(payload?.count ?? 0);
-    });
-
-    return () => {
-      unsubscribeGameJoined();
-      unsubscribeCartUpdated();
-    };
+    // TODO 1: const unsub1 = eventBus.on('game:joined', () => setNotifications(n => n + 1))
+    // TODO 2: const unsub2 = eventBus.on('cart:updated', ({ count }) => setCartCount(count))
+    // TODO 3: return () => { unsub1(); unsub2(); }
   }, []);
 
   return (
